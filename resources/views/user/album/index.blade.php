@@ -46,7 +46,7 @@
                 
                 <!-- Foto + Overlay -->
                 <div class="overflow-hidden relative">
-                    <img src="{{ asset('storage/' . $photo->image) }}" 
+                    <img src="{{ asset('storage/' . $photo->image_path) }}" 
                          alt="{{ $photo->title }}" 
                          class="h-64 w-full object-cover transition duration-500 group-hover:scale-110">
 

@@ -19,6 +19,38 @@ use App\Http\Controllers\Web\DownloadController;
 
 
 
+// Route untuk manifest.json dengan CORS headers
+Route::get('/manifest.json', function () {
+    $filePath = public_path('manifest.json');
+    
+    if (!file_exists($filePath)) {
+        abort(404);
+    }
+    
+    return response()->file($filePath, [
+        'Content-Type' => 'application/manifest+json',
+        'Access-Control-Allow-Origin' => '*',
+        'Access-Control-Allow-Methods' => 'GET',
+        'Access-Control-Allow-Headers' => 'Content-Type',
+    ]);
+})->name('manifest');
+
+// Route untuk serviceworker.js dengan CORS headers
+Route::get('/serviceworker.js', function () {
+    $filePath = public_path('serviceworker.js');
+    
+    if (!file_exists($filePath)) {
+        abort(404);
+    }
+    
+    return response()->file($filePath, [
+        'Content-Type' => 'application/javascript',
+        'Access-Control-Allow-Origin' => '*',
+        'Access-Control-Allow-Methods' => 'GET',
+        'Service-Worker-Allowed' => '/',
+    ]);
+})->name('serviceworker');
+
 // Route untuk download file
 Route::get('/download/{folder}/{namafile}', [DownloadController::class, 'download'])
      ->name('photo.download');
@@ -37,6 +69,7 @@ Route::get('/storage/{path}', function ($path) {
         'Content-Type' => $mimeType,
         'Access-Control-Allow-Origin' => '*',
         'Access-Control-Allow-Methods' => 'GET',
+        'Access-Control-Allow-Headers' => 'Content-Type',
     ]);
 })->where('path', '.*')->name('storage.serve');
 

@@ -38,7 +38,7 @@
 
                 <!-- Klik ke halaman show -->
                 <a href="{{ route('user.photo.show', $photo->id) }}" class="block relative">
-                    <img src="{{ asset('storage/'.$photo->image) }}" 
+                    <img src="{{ asset('storage/'.$photo->image_path) }}" 
                          alt="{{ $photo->title }}" 
                          class="h-56 w-full object-cover transition duration-500 group-hover:scale-105">
                     <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition pointer-events-none"></div>

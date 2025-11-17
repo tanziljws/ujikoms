@@ -26,7 +26,7 @@
         <div class="flex flex-col md:flex-row">
             <!-- Foto -->
             <div class="md:w-1/2 relative overflow-hidden">
-                <img src="{{ asset('storage/' . $photo->image) }}" 
+                <img src="{{ asset('storage/' . $photo->image_path) }}" 
                      alt="{{ $photo->title }}" 
                      class="w-full max-h-[400px] md:max-h-[100%] object-cover transition duration-700 ease-in-out hover:scale-105">
             </div>

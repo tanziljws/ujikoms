@@ -20,7 +20,7 @@
             <div>
                 <label class="block text-sm font-medium text-gray-700">Foto Sekarang</label>
                 @if($photo->image && file_exists(storage_path('app/public/'.$photo->image)))
-                    <img src="{{ asset('storage/'.$photo->image) }}" 
+                    <img src="{{ asset('storage/'.$photo->image_path) }}" 
                          alt="{{ $photo->title }}" 
                          class="h-40 rounded-lg object-cover mt-2">
                 @else

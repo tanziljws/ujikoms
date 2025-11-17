@@ -53,7 +53,7 @@
                 <!-- Gambar -->
                 <div class="overflow-hidden relative">
                     @if($photo->image && file_exists(storage_path('app/public/'.$photo->image)))
-                        <img src="{{ asset('storage/'.$photo->image) }}" 
+                        <img src="{{ asset('storage/'.$photo->image_path) }}" 
                              alt="{{ $photo->title }}" 
                              class="h-56 w-full object-cover transition duration-500 group-hover:scale-110">
                     @else

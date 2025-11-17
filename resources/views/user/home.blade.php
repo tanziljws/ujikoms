@@ -84,7 +84,7 @@
                         </a>
 
                         {{-- Tombol Download --}}
-                        <a href="{{ route('photo.download', [basename(dirname($photo->image)), basename($photo->image)]) }}"
+                        <a href="{{ route('photo.download', [basename(dirname($photo->image_path)), basename($photo->image_path)]) }}"
                            class="flex items-center text-gray-500 hover:text-green-500 transition duration-300"
                            title="Download Foto">
                             ⬇️ <span class="ml-1">Download</span>

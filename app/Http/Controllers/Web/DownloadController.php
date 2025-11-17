@@ -19,12 +19,9 @@ class DownloadController extends Controller
         }
 
         $fullPath = Storage::disk('public')->path($filePath);
-        $mimeType = mime_content_type($fullPath) ?: 'application/octet-stream';
         
-        // Untuk mobile, gunakan response()->file() dengan headers yang benar
-        return Response::file($fullPath, [
-            'Content-Type' => $mimeType,
-            'Content-Disposition' => 'attachment; filename="' . basename($filename) . '"',
+        // Untuk mobile, gunakan Response::download() yang lebih compatible
+        return Response::download($fullPath, basename($filename), [
             'Access-Control-Allow-Origin' => '*',
         ]);
     }

@@ -14,7 +14,7 @@ use App\Http\Controllers\Web\ChatWebController;
 use App\Http\Controllers\Web\LikeController;
 use App\Http\Controllers\Web\CommentController;
 use App\Http\Controllers\Web\KontakController;
-use App\Http\Controllers\web\DownloadController;
+use App\Http\Controllers\Web\DownloadController;
 
 
 

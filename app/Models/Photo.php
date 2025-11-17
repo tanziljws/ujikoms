@@ -27,6 +27,19 @@ class Photo extends Model
         return $this->likes()->count() + ($this->guest_likes ?? 0);
     }
 
+    // Accessor untuk image path yang benar
+    public function getImagePathAttribute()
+    {
+        $image = $this->image;
+        
+        // Jika image hanya angka atau tidak ada path folder, anggap sebagai photos
+        if ($image && !str_contains($image, '/')) {
+            return 'photos/' . $image;
+        }
+        
+        return $image;
+    }
+
     public static function populerCount()
 {
     return self::withCount('likes')

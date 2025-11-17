@@ -19,8 +19,26 @@ use App\Http\Controllers\Web\DownloadController;
 
 
 
+// Route untuk download file
 Route::get('/download/{folder}/{namafile}', [DownloadController::class, 'download'])
      ->name('photo.download');
+
+// Route untuk serve storage files jika symlink tidak bekerja (fallback)
+Route::get('/storage/{path}', function ($path) {
+    $filePath = storage_path('app/public/' . $path);
+    
+    if (!file_exists($filePath)) {
+        abort(404, 'File not found');
+    }
+    
+    $mimeType = mime_content_type($filePath) ?: 'application/octet-stream';
+    
+    return response()->file($filePath, [
+        'Content-Type' => $mimeType,
+        'Access-Control-Allow-Origin' => '*',
+        'Access-Control-Allow-Methods' => 'GET',
+    ]);
+})->where('path', '.*')->name('storage.serve');
 
 
 

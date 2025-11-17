@@ -19,19 +19,43 @@ use App\Http\Controllers\Web\DownloadController;
 
 
 
+// Handle OPTIONS request untuk CORS preflight
+Route::options('/manifest.json', function () {
+    return response('', 200, [
+        'Access-Control-Allow-Origin' => '*',
+        'Access-Control-Allow-Methods' => 'GET, OPTIONS',
+        'Access-Control-Allow-Headers' => 'Content-Type',
+        'Access-Control-Max-Age' => '86400',
+    ]);
+});
+
+Route::options('/serviceworker.js', function () {
+    return response('', 200, [
+        'Access-Control-Allow-Origin' => '*',
+        'Access-Control-Allow-Methods' => 'GET, OPTIONS',
+        'Access-Control-Allow-Headers' => 'Content-Type',
+    ]);
+});
+
 // Route untuk manifest.json dengan CORS headers
 Route::get('/manifest.json', function () {
     $filePath = public_path('manifest.json');
     
     if (!file_exists($filePath)) {
-        abort(404);
+        return response()->json(['error' => 'Not found'], 404, [
+            'Access-Control-Allow-Origin' => '*',
+            'Access-Control-Allow-Methods' => 'GET',
+        ]);
     }
     
-    return response()->file($filePath, [
+    $content = file_get_contents($filePath);
+    
+    return response($content, 200, [
         'Content-Type' => 'application/manifest+json',
         'Access-Control-Allow-Origin' => '*',
-        'Access-Control-Allow-Methods' => 'GET',
+        'Access-Control-Allow-Methods' => 'GET, OPTIONS',
         'Access-Control-Allow-Headers' => 'Content-Type',
+        'Access-Control-Max-Age' => '86400',
     ]);
 })->name('manifest');
 
@@ -40,14 +64,20 @@ Route::get('/serviceworker.js', function () {
     $filePath = public_path('serviceworker.js');
     
     if (!file_exists($filePath)) {
-        abort(404);
+        return response()->json(['error' => 'Not found'], 404, [
+            'Access-Control-Allow-Origin' => '*',
+            'Access-Control-Allow-Methods' => 'GET',
+        ]);
     }
     
-    return response()->file($filePath, [
+    $content = file_get_contents($filePath);
+    
+    return response($content, 200, [
         'Content-Type' => 'application/javascript',
         'Access-Control-Allow-Origin' => '*',
-        'Access-Control-Allow-Methods' => 'GET',
+        'Access-Control-Allow-Methods' => 'GET, OPTIONS',
         'Service-Worker-Allowed' => '/',
+        'Access-Control-Allow-Headers' => 'Content-Type',
     ]);
 })->name('serviceworker');
 
@@ -57,10 +87,19 @@ Route::get('/download/{folder}/{namafile}', [DownloadController::class, 'downloa
 
 // Route untuk serve storage files jika symlink tidak bekerja (fallback)
 Route::get('/storage/{path}', function ($path) {
+    // Handle path yang tidak lengkap (misalnya "1" menjadi "photos/1")
+    if (!str_contains($path, '/') && is_numeric($path)) {
+        $path = 'photos/' . $path;
+    }
+    
     $filePath = storage_path('app/public/' . $path);
     
     if (!file_exists($filePath)) {
-        abort(404, 'File not found');
+        // Return 404 dengan CORS headers
+        return response()->json(['error' => 'File not found'], 404, [
+            'Access-Control-Allow-Origin' => '*',
+            'Access-Control-Allow-Methods' => 'GET',
+        ]);
     }
     
     $mimeType = mime_content_type($filePath) ?: 'application/octet-stream';
@@ -70,6 +109,7 @@ Route::get('/storage/{path}', function ($path) {
         'Access-Control-Allow-Origin' => '*',
         'Access-Control-Allow-Methods' => 'GET',
         'Access-Control-Allow-Headers' => 'Content-Type',
+        'Cache-Control' => 'public, max-age=31536000',
     ]);
 })->where('path', '.*')->name('storage.serve');
 

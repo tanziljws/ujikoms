@@ -20,7 +20,8 @@ return Application::configure(basePath: dirname(__DIR__))
 
 
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Tambahkan CORS headers middleware ke semua response
+        $middleware->append(\App\Http\Middleware\AddCorsHeaders::class);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

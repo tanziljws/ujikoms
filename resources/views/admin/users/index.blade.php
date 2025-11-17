@@ -149,7 +149,7 @@
                                     {{ $user->is_active ? 'Nonaktifkan' : 'Aktifkan' }}
                                 </button>
                             </form>
-                            <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline delete-form">
+                            <form action="{{ route('users.destroy', $user) }}" method="POST" class="inline delete-form">
                                 @csrf @method('DELETE')
                                 <button type="button"
                                     class="delete-btn inline-block px-3 py-1 bg-gray-700 hover:bg-gray-800 text-white rounded-lg text-xs transition"
@@ -203,7 +203,7 @@
                             {{ $user->is_active ? 'Nonaktifkan' : 'Aktifkan' }}
                         </button>
                     </form>
-                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="delete-form">
+                    <form action="{{ route('users.destroy', $user) }}" method="POST" class="delete-form">
                         @csrf @method('DELETE')
                         <button type="button" 
                             class="delete-btn px-3 py-1 bg-gray-700 hover:bg-gray-800 text-white rounded-lg text-xs transition"

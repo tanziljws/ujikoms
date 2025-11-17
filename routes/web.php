@@ -195,7 +195,6 @@ Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
     // Manajemen Akun
     Route::resource('/users', UserController::class);
     Route::patch('/users/{user}/status', [UserController::class, 'toggleStatus'])->name('users.toggleStatus');
-    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
     
 });
 

@@ -18,7 +18,7 @@
                 placeholder="Cari foto berdasarkan judul atau deskripsi..." 
                 class="w-full px-5 py-3 pl-12 rounded-full bg-white/70 backdrop-blur-md border border-gray-200 shadow-md focus:ring-2 focus:ring-blue-400 focus:outline-none transition-all duration-300 text-gray-700 placeholder-gray-400"
             >
-            <svg xmlns="http://www.w3.org/2000/svg" 
+            <svg xmlns="https://www.w3.org/2000/svg" 
                  class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 transform -translate-y-1/2 pointer-events-none"
                  fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -75,7 +75,7 @@
                                 $totalLikes = $photo->likes->count() + ($photo->guest_likes ?? 0);
                             @endphp
                             <button type="submit" class="flex items-center transition duration-300 hover:scale-110">
-                                <svg xmlns="http://www.w3.org/2000/svg" 
+                                <svg xmlns="https://www.w3.org/2000/svg" 
                                      viewBox="0 0 20 20" 
                                      fill="{{ $liked ? 'red' : 'none' }}" 
                                      stroke="currentColor"

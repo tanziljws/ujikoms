@@ -61,7 +61,7 @@
                             @endphp
                             <button type="submit" 
                                 class="flex items-center space-x-1 text-gray-600 hover:text-red-500 transition">
-                                <svg xmlns="http://www.w3.org/2000/svg" 
+                                <svg xmlns="https://www.w3.org/2000/svg" 
                                      fill="{{ $liked ? 'red' : 'none' }}" 
                                      viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" 
                                      class="w-5 h-5 {{ $liked ? 'text-red-500' : 'text-gray-500' }}">

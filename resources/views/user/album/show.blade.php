@@ -51,7 +51,7 @@
 
                         <button type="submit" 
                             class="flex items-center space-x-2 px-3 py-1.5 rounded-full bg-gray-100 hover:bg-gray-200 transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" 
+                            <svg xmlns="https://www.w3.org/2000/svg" 
                                  viewBox="0 0 20 20" fill="currentColor"
                                  class="h-5 w-5 {{ $liked ? 'text-red-500' : 'text-gray-400' }}">
                                 <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 

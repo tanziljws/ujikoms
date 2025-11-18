@@ -11,7 +11,7 @@
                     class="flex justify-between md:justify-center items-center w-full md:cursor-default md:pointer-events-none"
                 >
                     <h3 class="text-lg font-semibold mb-2 text-blue-600">Tentang Kami</h3>
-                    <svg xmlns="http://www.w3.org/2000/svg"
+                    <svg xmlns="https://www.w3.org/2000/svg"
                         class="h-5 w-5 text-blue-600 transform transition-transform duration-300 md:hidden"
                         :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -34,7 +34,7 @@
                     class="flex justify-between md:justify-center items-center w-full md:cursor-default md:pointer-events-none"
                 >
                     <h3 class="text-lg font-semibold mb-2 text-blue-600">Kontak</h3>
-                    <svg xmlns="http://www.w3.org/2000/svg"
+                    <svg xmlns="https://www.w3.org/2000/svg"
                         class="h-5 w-5 text-blue-600 transform transition-transform duration-300 md:hidden"
                         :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

@@ -17,20 +17,20 @@
     <link rel="apple-touch-icon" href="{{ asset('images/icons/icon-192x192.png') }}">
 
     <script>
-        // Disable Service Worker untuk mencegah PWA install prompt
-        // if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
-        //     window.addEventListener('load', async () => {
-        //         try {
-        //             const swUrl = '{{ asset('serviceworker.js') }}';
-        //             if (swUrl.startsWith(window.location.origin)) {
-        //                 const reg = await navigator.serviceWorker.register(swUrl);
-        //                 console.log('✅ Service Worker terdaftar:', reg);
-        //             }
-        //         } catch (err) {
-        //             console.warn('Service Worker tidak tersedia:', err.message);
-        //         }
-        //     });
-        // }
+        // Register Service Worker untuk PWA
+        if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
+            window.addEventListener('load', async () => {
+                try {
+                    const swUrl = '{{ asset('serviceworker.js') }}';
+                    if (swUrl.startsWith(window.location.origin)) {
+                        const reg = await navigator.serviceWorker.register(swUrl);
+                        console.log('✅ Service Worker terdaftar:', reg);
+                    }
+                } catch (err) {
+                    console.warn('Service Worker tidak tersedia:', err.message);
+                }
+            });
+        }
     </script>
 
     <style>

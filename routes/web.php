@@ -183,9 +183,6 @@ Route::get('/informasi/{informasi}', [InformasiController::class, 'showguest'])-
     // Galeri Foto
     Route::get('/photo/{id}', [PhotoController::class, 'show'])->name('user.photo.show');
 
-    
-    Route::post('/photo/{photo}/like', [LikeController::class, 'toggle'])->name('photo.like');
-
 });
 
 /*

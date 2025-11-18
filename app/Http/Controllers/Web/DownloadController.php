@@ -19,7 +19,7 @@ class DownloadController extends Controller
         }
 
         $fullPath = Storage::disk('public')->path($filePath);
-        
+
         // Untuk mobile, gunakan Response::download() yang lebih compatible
         return Response::download($fullPath, basename($filename), [
             'Access-Control-Allow-Origin' => '*',

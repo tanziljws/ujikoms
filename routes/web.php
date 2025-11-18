@@ -130,12 +130,13 @@ Route::post('/kontak/kirim', [KontakController::class, 'kirim'])->name('kontak.k
 | ROUTE KOMENTAR & LIKE (USER)
 |--------------------------------------------------------------------------
 */
+// Like/unlike foto - bisa diakses oleh user dan guest (tidak perlu auth)
+Route::post('/photo/{photo}/like', [LikeController::class, 'toggle'])->name('photo.like');
+
+// Komentar hanya untuk user yang login
 Route::middleware('auth')->group(function () {
     // Simpan komentar
     Route::post('/photo/{photo}/comment', [CommentController::class, 'store'])->name('photo.comment');
-
-    // Like/unlike foto
-    Route::post('/photo/{photo}/like', [LikeController::class, 'toggle'])->name('photo.like');
 });
 
 /*

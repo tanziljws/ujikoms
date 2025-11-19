@@ -22,6 +22,11 @@ class AddCorsHeaders
         $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
         $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
         $response->headers->set('Access-Control-Allow-Credentials', 'false');
+        
+        // Force HTTPS untuk semua response
+        if (!$request->secure() && $request->header('X-Forwarded-Proto') !== 'https') {
+            $response->headers->set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+        }
 
         return $response;
     }

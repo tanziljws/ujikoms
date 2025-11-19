@@ -14,7 +14,7 @@
     <meta name="theme-color" content="#3b82f6">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Hann Website">
-    <link rel="apple-touch-icon" href="{{ asset('images/icons/icon-192x192.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/icons/android-launchericon-192-192.png') }}">
 
     <script>
         // Register Service Worker untuk PWA

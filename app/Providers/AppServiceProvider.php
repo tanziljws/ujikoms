@@ -20,9 +20,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Force HTTPS di production (untuk Railway)
-        if (app()->environment('production') || env('FORCE_HTTPS', false)) {
-            URL::forceScheme('https');
-        }
+        // Force HTTPS - selalu aktif untuk memastikan semua URL HTTPS
+        // Railway menggunakan reverse proxy, jadi perlu force HTTPS
+        URL::forceScheme('https');
     }
 }
